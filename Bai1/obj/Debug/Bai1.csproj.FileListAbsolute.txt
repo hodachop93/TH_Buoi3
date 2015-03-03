@@ -3,8 +3,8 @@ D:\Visual Studio Projects\TH_Buoi3\Bai1\bin\Debug\Bai1.exe.config
 D:\Visual Studio Projects\TH_Buoi3\Bai1\bin\Debug\Bai1.exe
 D:\Visual Studio Projects\TH_Buoi3\Bai1\bin\Debug\Bai1.pdb
 D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.csprojResolveAssemblyReference.cache
-D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.Form1.resources
 D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.Properties.Resources.resources
 D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.csproj.GenerateResource.Cache
 D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.exe
 D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.pdb
+D:\Visual Studio Projects\TH_Buoi3\Bai1\obj\Debug\Bai1.MiniNotepad.resources
