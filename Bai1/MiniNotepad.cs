@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Text;
+
 
 namespace Bai1
 {
@@ -99,6 +101,36 @@ namespace Bai1
                     this.Text = fileName + " - Mini Notepad";
                 }
             }
+        }
+
+        private void MiniNotepad_Load(object sender, EventArgs e)
+        {
+            int[] size = { 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 48, 72 };
+            for (int i = 0; i < size.Length; i++)
+            {
+                combSize.Items.Add(size[i]);
+            }
+            combSize.SelectedIndex = 2;
+            InstalledFontCollection listFont = new InstalledFontCollection();
+            //Xac dinh vi tri cua font Times New Roman
+            int j = 0, c = 0;
+            foreach (FontFamily font in listFont.Families)
+            {
+                combFont.Items.Add(font.Name);
+                if (font.Name.Contains("Times New Roman"))
+                    c = j;
+                j++;
+            }
+            combFont.SelectedIndex = c;
+        }
+        //Xu ly trong rich text box khi font thay doi
+        private void combFont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            FontFamily fontfa = new FontFamily(combFont.SelectedText);
+            System.Drawing.Font font = new System.Drawing.Font(fontfa, float.Parse(combSize.SelectedText));
+            if (!richTxtBox.Text.Equals(""))
+                richTxtBox.SelectionFont = font;
         }
 
    
