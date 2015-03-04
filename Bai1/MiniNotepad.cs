@@ -38,6 +38,8 @@ namespace Bai1
             richTxtBox.Text = "";
             richTxtBox.Visible = true;
             filePath = null;
+            setFontAndSize();
+         
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,18 +56,18 @@ namespace Bai1
         private void openFile()
         {
             OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Text File (*.txt)|*.txt|Rich Text File (*.rtf)|*.rtf";
+            open.Filter = "Text File (*.txt)|*.txt|Word Document (*.doc)|*.doc|Rich Text File (*.rtf)|*.rtf";
             //Mo lai directory o lan truoc
             open.RestoreDirectory = true;
             if (open.ShowDialog() == DialogResult.OK)
             {
                 richTxtBox.Visible = true;
-                string fileName = Path.GetFileNameWithoutExtension(open.FileName);
+                string fileName = Path.GetFileName(open.FileName);
                 this.Text = fileName + " - Mini Notepad";
                 //Luu dia chi file
                 filePath = open.FileName;
                 //Load file giu nguyen dinh dang van ban
-                richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.PlainText);
+                richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.RichText);
             }
         }
 
@@ -86,16 +88,17 @@ namespace Bai1
             SaveFileDialog save = new SaveFileDialog();
             //Mo lai directory da luu o lan truoc
             save.RestoreDirectory = true;
-            save.Filter = "Text File (*.txt)|*.txt|Rich Text File (*.rtf)|*.rtf";
+            save.Filter = "Text File (*.txt)|*.txt|Word Document (*.doc)|*.doc|Rich Text File (*.rtf)|*.rtf";
             if (filePath!=null)
             {
-                richTxtBox.SaveFile(filePath, RichTextBoxStreamType.PlainText);
+                //Luu file, chuyen san dinh dang moi luon
+                richTxtBox.SaveFile(filePath, RichTextBoxStreamType.RichNoOleObjs);
             }
             else
             {
                 if (save.ShowDialog() == DialogResult.OK)
                 {
-                    richTxtBox.SaveFile(save.FileName, RichTextBoxStreamType.PlainText);
+                    richTxtBox.SaveFile(save.FileName, RichTextBoxStreamType.RichNoOleObjs);
                     filePath = save.FileName;
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
                     this.Text = fileName + " - Mini Notepad";
@@ -110,29 +113,129 @@ namespace Bai1
             {
                 combSize.Items.Add(size[i]);
             }
-            combSize.SelectedIndex = 2;
+            combSize.SelectedIndex = 5;
             InstalledFontCollection listFont = new InstalledFontCollection();
-            //Xac dinh vi tri cua font Times New Roman
-            int j = 0, c = 0;
             foreach (FontFamily font in listFont.Families)
             {
                 combFont.Items.Add(font.Name);
-                if (font.Name.Contains("Times New Roman"))
-                    c = j;
-                j++;
+                
             }
-            combFont.SelectedIndex = c;
         }
         //Xu ly trong rich text box khi font thay doi
         private void combFont_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            FontFamily fontfa = new FontFamily(combFont.SelectedText);
-            System.Drawing.Font font = new System.Drawing.Font(fontfa, float.Parse(combSize.SelectedText));
-            if (!richTxtBox.Text.Equals(""))
-                richTxtBox.SelectionFont = font;
+            setFontAndSize();
+            
         }
 
-   
+        private void combSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setFontAndSize();
+        }
+
+        //Ham set font va size cho selected text
+        private void setFontAndSize()
+        {
+            //FontStyle fontStyle = FontStyle.Regular;
+            FontStyle fontStyle = new FontStyle();
+            if (btnBold.Checked) fontStyle = FontStyle.Bold;
+            if (btnItalic.Checked) fontStyle = FontStyle.Italic;
+            if (btnUnderLine.Checked) fontStyle = FontStyle.Underline;
+            FontFamily fontfa = new FontFamily(combFont.Text);
+            System.Drawing.Font font = new System.Drawing.Font(fontfa, float.Parse(combSize.Text),fontStyle);
+            richTxtBox.SelectionFont = font;
+
+            
+        }
+
+        private void btnFontColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                richTxtBox.SelectionColor = colorDialog.Color;
+            }
+        }
+
+        private void btnLeftAlign_Click(object sender, EventArgs e)
+        {
+            richTxtBox.SelectionAlignment = HorizontalAlignment.Left;
+        }
+
+        private void btnCenterAlign_Click(object sender, EventArgs e)
+        {
+            richTxtBox.SelectionAlignment = HorizontalAlignment.Center;
+
+        }
+
+        private void btnRightAlign_Click(object sender, EventArgs e)
+        {
+            richTxtBox.SelectionAlignment = HorizontalAlignment.Right;
+
+        }
+
+        private void btnItalic_Click(object sender, EventArgs e)
+        {
+            setFontAndSize();
+        }
+
+        private void btnBold_Click(object sender, EventArgs e)
+        {
+            setFontAndSize();
+        }
+
+        private void btnUnderLine_Click(object sender, EventArgs e)
+        {
+            setFontAndSize();
+        }
+
+        private void cutMenuItem_Click(object sender, EventArgs e)
+        {
+            cutAction();
+        }
+
+        private void BtnCut_Click(object sender, EventArgs e)
+        {
+            cutAction();
+        }
+
+        private void copyMenuItem_Click(object sender, EventArgs e)
+        {
+            copyAction();
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            copyAction();
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            pasteAction();
+        }
+
+        private void pasteMenuItem_Click(object sender, EventArgs e)
+        {
+            pasteAction();
+        }
+
+        private void cutAction()
+        {
+            richTxtBox.Cut();
+        }
+
+        private void copyAction()
+        {
+            
+            Clipboard.SetData(DataFormats.Rtf, richTxtBox.SelectedRtf);
+            
+        }
+
+        private void pasteAction()
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Rtf))
+            {
+                richTxtBox.SelectedRtf = Clipboard.GetData(DataFormats.Rtf).ToString();
+            }
+        }
     }
 }
