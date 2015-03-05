@@ -63,6 +63,8 @@
             this.richTxtBox = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btnClipArt = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -185,7 +187,9 @@
             this.toolStripSeparator3,
             this.btnLeftAlign,
             this.btnCenterAlign,
-            this.btnRightAlign});
+            this.btnRightAlign,
+            this.toolStripSeparator5,
+            this.btnClipArt});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(696, 25);
@@ -378,6 +382,21 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // btnClipArt
+            // 
+            this.btnClipArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnClipArt.Image = ((System.Drawing.Image)(resources.GetObject("btnClipArt.Image")));
+            this.btnClipArt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClipArt.Name = "btnClipArt";
+            this.btnClipArt.Size = new System.Drawing.Size(23, 22);
+            this.btnClipArt.Text = "Clip Art";
+            this.btnClipArt.Click += new System.EventHandler(this.btnClipArt_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // MiniNotepad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,6 +456,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.ToolStripButton btnFontColor;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton btnClipArt;
     }
 }
 

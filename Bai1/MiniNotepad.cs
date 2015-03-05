@@ -38,8 +38,7 @@ namespace Bai1
             richTxtBox.Text = "";
             richTxtBox.Visible = true;
             filePath = null;
-            setFontAndSize();
-         
+            richTxtBox.Font = new Font(combFont.Text, float.Parse(combSize.Text), FontStyle.Regular);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace Bai1
                 //Luu dia chi file
                 filePath = open.FileName;
                 //Load file giu nguyen dinh dang van ban
-                richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.RichText);
+                richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.PlainText);
             }
         }
 
@@ -136,11 +135,14 @@ namespace Bai1
         //Ham set font va size cho selected text
         private void setFontAndSize()
         {
-            //FontStyle fontStyle = FontStyle.Regular;
-            FontStyle fontStyle = new FontStyle();
-            if (btnBold.Checked) fontStyle = FontStyle.Bold;
-            if (btnItalic.Checked) fontStyle = FontStyle.Italic;
-            if (btnUnderLine.Checked) fontStyle = FontStyle.Underline;
+            
+            FontStyle fontStyle = richTxtBox.SelectionFont.Style;
+            if (btnBold.Checked) fontStyle = fontStyle | FontStyle.Bold;
+            else fontStyle = fontStyle & ~FontStyle.Bold;
+            if (btnItalic.Checked) fontStyle = fontStyle | FontStyle.Italic;
+            else fontStyle = fontStyle & ~FontStyle.Italic;
+            if (btnUnderLine.Checked) fontStyle = fontStyle | FontStyle.Underline;
+            else fontStyle = fontStyle & ~FontStyle.Underline;
             FontFamily fontfa = new FontFamily(combFont.Text);
             System.Drawing.Font font = new System.Drawing.Font(fontfa, float.Parse(combSize.Text),fontStyle);
             richTxtBox.SelectionFont = font;
@@ -235,6 +237,22 @@ namespace Bai1
             if (Clipboard.ContainsText(TextDataFormat.Rtf))
             {
                 richTxtBox.SelectedRtf = Clipboard.GetData(DataFormats.Rtf).ToString();
+            }
+        }
+
+        private void btnClipArt_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            //open.Filter = "Bitmap File (*.bmp)|*.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                Image img = Image.FromFile(open.FileName);
+                Clipboard.SetDataObject(img);
+                DataFormats.Format df = DataFormats.GetFormat(DataFormats.Bitmap);
+                if (this.richTxtBox.CanPaste(df))
+                {
+                    richTxtBox.Paste(df);
+                }
             }
         }
     }
