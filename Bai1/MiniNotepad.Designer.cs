@@ -60,11 +60,11 @@
             this.btnLeftAlign = new System.Windows.Forms.ToolStripButton();
             this.btnCenterAlign = new System.Windows.Forms.ToolStripButton();
             this.btnRightAlign = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnClipArt = new System.Windows.Forms.ToolStripButton();
             this.richTxtBox = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.btnClipArt = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,46 +90,47 @@
             this.exitToolStripMenuItem});
             this.menuFile.Name = "menuFile";
             this.menuFile.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.menuFile.ShortcutKeyDisplayString = "&e";
+            this.menuFile.ShortcutKeyDisplayString = "";
             this.menuFile.Size = new System.Drawing.Size(33, 20);
-            this.menuFile.Text = "File";
+            this.menuFile.Text = "&File";
             // 
             // menuItemNew
             // 
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeyDisplayString = "";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItemNew.Size = new System.Drawing.Size(146, 22);
-            this.menuItemNew.Text = "New";
+            this.menuItemNew.Size = new System.Drawing.Size(152, 22);
+            this.menuItemNew.Text = "&New";
             this.menuItemNew.Click += new System.EventHandler(this.menuItemNew_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // menuEdit
             // 
@@ -140,13 +141,13 @@
             this.menuEdit.Name = "menuEdit";
             this.menuEdit.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.menuEdit.Size = new System.Drawing.Size(35, 20);
-            this.menuEdit.Text = "Edit";
+            this.menuEdit.Text = "&Edit";
             // 
             // cutMenuItem
             // 
             this.cutMenuItem.Name = "cutMenuItem";
             this.cutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.cutMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cutMenuItem.Text = "Cut";
             this.cutMenuItem.Click += new System.EventHandler(this.cutMenuItem_Click);
             // 
@@ -364,6 +365,21 @@
             this.btnRightAlign.Text = "Right Align";
             this.btnRightAlign.Click += new System.EventHandler(this.btnRightAlign_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnClipArt
+            // 
+            this.btnClipArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnClipArt.Image = ((System.Drawing.Image)(resources.GetObject("btnClipArt.Image")));
+            this.btnClipArt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClipArt.Name = "btnClipArt";
+            this.btnClipArt.Size = new System.Drawing.Size(23, 22);
+            this.btnClipArt.Text = "Clip Art";
+            this.btnClipArt.Click += new System.EventHandler(this.btnClipArt_Click);
+            // 
             // richTxtBox
             // 
             this.richTxtBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -381,21 +397,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(696, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // btnClipArt
-            // 
-            this.btnClipArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnClipArt.Image = ((System.Drawing.Image)(resources.GetObject("btnClipArt.Image")));
-            this.btnClipArt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnClipArt.Name = "btnClipArt";
-            this.btnClipArt.Size = new System.Drawing.Size(23, 22);
-            this.btnClipArt.Text = "Clip Art";
-            this.btnClipArt.Click += new System.EventHandler(this.btnClipArt_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // MiniNotepad
             // 
