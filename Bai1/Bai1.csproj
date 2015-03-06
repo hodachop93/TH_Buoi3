@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F3B1008-033B-41A1-B0CC-D35FEABC5D03}</ProjectGuid>
+    <ProjectGuid>{C12BBFB1-3FAF-4A45-94CF-FB6EA811CA21}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bai2</RootNamespace>
-    <AssemblyName>Bai2</AssemblyName>
+    <RootNamespace>Bai1</RootNamespace>
+    <AssemblyName>Bai1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,17 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bai2.cs">
+    <Compile Include="Bai1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bai2.Designer.cs">
-      <DependentUpon>Bai2.cs</DependentUpon>
+    <Compile Include="Bai1.Designer.cs">
+      <DependentUpon>Bai1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Bai2.resx">
-      <DependentUpon>Bai2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

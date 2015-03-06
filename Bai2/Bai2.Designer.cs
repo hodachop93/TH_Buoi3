@@ -1,6 +1,6 @@
 ﻿namespace Bai2
 {
-    partial class Form1
+    partial class Bai2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView = new System.Windows.Forms.TreeView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bai2));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnEditNode = new System.Windows.Forms.ToolStripButton();
+            this.treeView = new System.Windows.Forms.TreeView();
+            this.txtBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // treeView
-            // 
-            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView.Location = new System.Drawing.Point(0, 24);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(695, 468);
-            this.treeView.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -65,17 +62,11 @@
             this.menuFile.Size = new System.Drawing.Size(37, 20);
             this.menuFile.Text = "&File";
             // 
-            // menuEdit
-            // 
-            this.menuEdit.Name = "menuEdit";
-            this.menuEdit.Size = new System.Drawing.Size(39, 20);
-            this.menuEdit.Text = "&Edit";
-            // 
             // menuItemOpen
             // 
             this.menuItemOpen.Name = "menuItemOpen";
             this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItemOpen.Size = new System.Drawing.Size(152, 22);
+            this.menuItemOpen.Size = new System.Drawing.Size(146, 22);
             this.menuItemOpen.Text = "&Open";
             this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
@@ -83,21 +74,69 @@
             // 
             this.menuItemExit.Name = "menuItemExit";
             this.menuItemExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemExit.Size = new System.Drawing.Size(152, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(146, 22);
             this.menuItemExit.Text = "Exit";
+            // 
+            // menuEdit
+            // 
+            this.menuEdit.Name = "menuEdit";
+            this.menuEdit.Size = new System.Drawing.Size(39, 20);
+            this.menuEdit.Text = "&Edit";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEditNode});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(695, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnEditNode
+            // 
+            this.btnEditNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnEditNode.Image = ((System.Drawing.Image)(resources.GetObject("btnEditNode.Image")));
+            this.btnEditNode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditNode.Name = "btnEditNode";
+            this.btnEditNode.Size = new System.Drawing.Size(63, 22);
+            this.btnEditNode.Text = "Edit Node";
+            this.btnEditNode.Click += new System.EventHandler(this.btnEditNode_Click);
+            // 
+            // treeView
+            // 
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView.Location = new System.Drawing.Point(0, 49);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(372, 443);
+            this.treeView.TabIndex = 3;
+            this.treeView.Visible = false;
+            // 
+            // txtBox
+            // 
+            this.txtBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtBox.Location = new System.Drawing.Point(437, 49);
+            this.txtBox.Multiline = true;
+            this.txtBox.Name = "txtBox";
+            this.txtBox.Size = new System.Drawing.Size(258, 443);
+            this.txtBox.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 492);
+            this.Controls.Add(this.txtBox);
             this.Controls.Add(this.treeView);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,12 +144,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuFile;
         private System.Windows.Forms.ToolStripMenuItem menuEdit;
         private System.Windows.Forms.ToolStripMenuItem menuItemOpen;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnEditNode;
+        private System.Windows.Forms.TreeView treeView;
+        private System.Windows.Forms.TextBox txtBox;
     }
 }
 

@@ -112,7 +112,6 @@ namespace Bai1
             {
                 combSize.Items.Add(size[i]);
             }
-            combSize.SelectedIndex = 5;
             InstalledFontCollection listFont = new InstalledFontCollection();
             foreach (FontFamily font in listFont.Families)
             {
@@ -152,9 +151,9 @@ namespace Bai1
 
         private void btnFontColor_Click(object sender, EventArgs e)
         {
-            if (colorDialog.ShowDialog() == DialogResult.OK)
+            if (colorDialogFont.ShowDialog() == DialogResult.OK)
             {
-                richTxtBox.SelectionColor = colorDialog.Color;
+                richTxtBox.SelectionColor = colorDialogFont.Color;
             }
         }
 
@@ -259,6 +258,24 @@ namespace Bai1
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnFill_Click(object sender, EventArgs e)
+        {
+            if (colorDialogBackground.ShowDialog() == DialogResult.OK)
+            {
+                richTxtBox.BackColor = colorDialogBackground.Color;
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            richTxtBox.Undo();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            richTxtBox.Redo();
         }
     }
 }
