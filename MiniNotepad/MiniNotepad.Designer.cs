@@ -63,12 +63,12 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnClipArt = new System.Windows.Forms.ToolStripButton();
             this.btnFill = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.richTxtBox = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.colorDialogFont = new System.Windows.Forms.ColorDialog();
             this.colorDialogBackground = new System.Windows.Forms.ColorDialog();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -397,25 +397,6 @@
             this.btnFill.Text = "Fill Background";
             this.btnFill.Click += new System.EventHandler(this.btnFill_Click);
             // 
-            // richTxtBox
-            // 
-            this.richTxtBox.AutoWordSelection = true;
-            this.richTxtBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTxtBox.Location = new System.Drawing.Point(0, 49);
-            this.richTxtBox.Name = "richTxtBox";
-            this.richTxtBox.Size = new System.Drawing.Size(696, 407);
-            this.richTxtBox.TabIndex = 2;
-            this.richTxtBox.Text = "";
-            this.richTxtBox.Visible = false;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(696, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -435,6 +416,26 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // richTxtBox
+            // 
+            this.richTxtBox.AutoWordSelection = true;
+            this.richTxtBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTxtBox.Location = new System.Drawing.Point(0, 49);
+            this.richTxtBox.Name = "richTxtBox";
+            this.richTxtBox.Size = new System.Drawing.Size(696, 407);
+            this.richTxtBox.TabIndex = 2;
+            this.richTxtBox.Text = "";
+            this.richTxtBox.Visible = false;
+            this.richTxtBox.TextChanged += new System.EventHandler(this.richTxtBox_TextChanged);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(696, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // MiniNotepad
             // 

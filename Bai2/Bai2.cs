@@ -14,6 +14,8 @@ namespace Bai2
 {
     public partial class Bai2 : Form
     {
+        XmlDocument xmlDoc;
+        string fileName;
         public Bai2()
         {
             InitializeComponent();
@@ -27,8 +29,10 @@ namespace Bai2
             if (open.ShowDialog() == DialogResult.OK)
             {
                 treeView.Visible = true;
-                XmlDocument xmlDoc = new XmlDocument();
+                txtBox.Visible = true;
+                xmlDoc = new XmlDocument();
                 FileStream fs = File.OpenRead(open.FileName);
+                fileName = open.FileName;
                 xmlDoc.Load(fs);
                 //Xoa cac node trong tree view
                 treeView.Nodes.Clear();
@@ -38,19 +42,9 @@ namespace Bai2
                 XmlNode xNode = xmlDoc.FirstChild;
                 TreeNode tNode = treeView.Nodes[0];
                 this.AddNode(xNode, tNode);
-
-                //XmlDataDocument xmldoc = new XmlDataDocument();
-                //XmlNode xmlnode;
-                //FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
-                //xmldoc.Load(fs);
-                //xmlnode = xmldoc.FirstChild;
-                //treeView.Nodes.Clear();
-                ////Add nut rootNode
-                //treeView.Nodes.Add(new TreeNode(xmldoc.DocumentElement.Name));
-                //TreeNode tNode;
-                //tNode = treeView.Nodes[0];
-                //this.AddNode(xmlnode, tNode);
-            }
+                
+                
+            }  
 
         }
 
@@ -60,23 +54,26 @@ namespace Bai2
             XmlNode xNode;
             TreeNode tNode;
             XmlNodeList nodeList;
-            int i = 0;
             if (inXmlNode.HasChildNodes)
             {
                 nodeList = inXmlNode.ChildNodes;
-                for (i = 0; i <= nodeList.Count - 1; i++)
+                for (int i = 0; i < nodeList.Count; i++)
                 {
                     xNode = inXmlNode.ChildNodes[i];
+                    string name = xNode.Name;
+                    string text = xNode.InnerText;
                     inTreeNode.Nodes.Add(new TreeNode(xNode.Name));
                     tNode = inTreeNode.Nodes[i];
-                    AddNode(xNode, tNode);
+                    this.AddNode(xNode, tNode);
                 }
             }
             else
             {
                 inTreeNode.Text = inXmlNode.InnerText;
-
+                string s = inXmlNode.InnerText;
+                string name = inXmlNode.Name;
             }
+           
         }
 
         private void btnEditNode_Click(object sender, EventArgs e)
@@ -84,8 +81,21 @@ namespace Bai2
             if (treeView.Visible == true)
             {
                 txtBox.Text = treeView.SelectedNode.Text;
+
             }
         }
+
+        //Luu node da duoc thay doi vao file xml
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            TreeNode tSelectedNode = treeView.SelectedNode;
+            string s = tSelectedNode.FullPath;
+            XmlElement root = xmlDoc.DocumentElement;
+            XmlNode xNode = root.SelectSingleNode(s);
+
+        }
+
+
 
         
     }

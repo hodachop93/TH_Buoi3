@@ -38,6 +38,8 @@
             this.btnEditNode = new System.Windows.Forms.ToolStripButton();
             this.treeView = new System.Windows.Forms.TreeView();
             this.txtBox = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -105,33 +107,53 @@
             // 
             // treeView
             // 
-            this.treeView.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView.Location = new System.Drawing.Point(0, 49);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(372, 443);
+            this.treeView.Size = new System.Drawing.Size(372, 405);
             this.treeView.TabIndex = 3;
             this.treeView.Visible = false;
             // 
             // txtBox
             // 
-            this.txtBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.txtBox.Location = new System.Drawing.Point(437, 49);
             this.txtBox.Multiline = true;
             this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(258, 443);
+            this.txtBox.Size = new System.Drawing.Size(258, 405);
             this.txtBox.TabIndex = 4;
+            this.txtBox.Visible = false;
             // 
-            // Form1
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(458, 460);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save Node";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(589, 460);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // Bai2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 492);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtBox);
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Bai2";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -153,6 +175,8 @@
         private System.Windows.Forms.ToolStripButton btnEditNode;
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.TextBox txtBox;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

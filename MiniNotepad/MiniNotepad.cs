@@ -16,6 +16,7 @@ namespace Bai1
     public partial class MiniNotepad : Form
     {
         private string filePath = null;
+        bool fileChanged = false;
         public MiniNotepad()
         {
             InitializeComponent();
@@ -34,11 +35,35 @@ namespace Bai1
         //
         private void newFile()
         {
-            this.Text = "New Text Document";
-            richTxtBox.Text = "";
-            richTxtBox.Visible = true;
-            filePath = null;
-            richTxtBox.Font = new Font(combFont.Text, float.Parse(combSize.Text), FontStyle.Regular);
+            if (!fileChanged)
+            {
+                this.Text = "New Text Document";
+                richTxtBox.Text = "";
+                richTxtBox.Visible = true;
+                filePath = null;
+                richTxtBox.Font = new Font(combFont.Text, float.Parse(combSize.Text), FontStyle.Regular);
+                fileChanged = false;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Bạn chưa lưu thay đổi\nBạn có muốn lưu những thay đổi này không?",
+                    "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        saveFile();
+                        newFile();
+                        break;
+                    case DialogResult.No:
+                       
+                        fileChanged = false;
+                        newFile();
+                        break;
+                    case DialogResult.Cancel:
+                        break;
+                }
+            }
+
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,9 +90,14 @@ namespace Bai1
                 this.Text = fileName + " - Mini Notepad";
                 //Luu dia chi file
                 filePath = open.FileName;
-                //Load file giu nguyen dinh dang van ban
-                richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.PlainText);
+                
+                string extension = Path.GetExtension(filePath);
+                if (extension.Equals(".txt"))
+                    richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.PlainText);
+                else if (extension.Equals(".rtf"))
+                    richTxtBox.LoadFile(open.FileName, RichTextBoxStreamType.RichText);
             }
+            fileChanged = false;
         }
 
         private void toolStripBtnSave_Click(object sender, EventArgs e)
@@ -91,18 +121,28 @@ namespace Bai1
             if (filePath!=null)
             {
                 //Luu file, chuyen san dinh dang moi luon
-                richTxtBox.SaveFile(filePath, RichTextBoxStreamType.RichNoOleObjs);
+                //.SaveFile(filePath, RichTextBoxStreamType.RichText); 
+                string extension = Path.GetExtension(filePath);
+                if (extension.Equals(".txt"))
+                    richTxtBox.LoadFile(filePath, RichTextBoxStreamType.PlainText);
+                else if (extension.Equals(".rtf"))
+                    richTxtBox.LoadFile(filePath, RichTextBoxStreamType.RichText);
             }
             else
             {
                 if (save.ShowDialog() == DialogResult.OK)
                 {
-                    richTxtBox.SaveFile(save.FileName, RichTextBoxStreamType.RichNoOleObjs);
+                    string extension = Path.GetExtension(save.FileName);
+                    if (extension.Equals("txt"))
+                        richTxtBox.SaveFile(save.FileName, RichTextBoxStreamType.PlainText);
+                    else if (extension.Equals("rtf"))
+                        richTxtBox.SaveFile(save.FileName, RichTextBoxStreamType.RichText); 
                     filePath = save.FileName;
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
                     this.Text = fileName + " - Mini Notepad";
                 }
             }
+            fileChanged = false;
         }
 
         private void MiniNotepad_Load(object sender, EventArgs e)
@@ -276,6 +316,11 @@ namespace Bai1
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             richTxtBox.Redo();
+        }
+
+        private void richTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            fileChanged = true;
         }
     }
 }
