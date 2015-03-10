@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bai1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
@@ -42,6 +43,7 @@
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,10 +122,14 @@
             // treeView
             // 
             this.treeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeView.ImageIndex = 0;
+            this.treeView.ImageList = this.imageList;
             this.treeView.Location = new System.Drawing.Point(0, 36);
             this.treeView.Name = "treeView";
+            this.treeView.SelectedImageIndex = 0;
             this.treeView.Size = new System.Drawing.Size(227, 289);
             this.treeView.TabIndex = 2;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // listView
             // 
@@ -151,6 +157,15 @@
             // 
             this.type.Text = "Type";
             // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "computer.png");
+            this.imageList.Images.SetKeyName(1, "hdd.ico");
+            this.imageList.Images.SetKeyName(2, "CD-Rom Drive.png");
+            this.imageList.Images.SetKeyName(3, "folder.png");
+            // 
             // Bai1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +178,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Name = "Bai1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Bai1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -185,6 +201,7 @@
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader date;
         private System.Windows.Forms.ColumnHeader type;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
 
