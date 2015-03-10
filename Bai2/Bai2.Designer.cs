@@ -35,13 +35,24 @@
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnEditNode = new System.Windows.Forms.ToolStripButton();
+            this.btnOpen = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.txtAddNode = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnFind = new System.Windows.Forms.ToolStripButton();
+            this.txtFindNode = new System.Windows.Forms.ToolStripTextBox();
             this.treeView = new System.Windows.Forms.TreeView();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.label1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtBox = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.listBox = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -70,7 +81,6 @@
             this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.menuItemOpen.Size = new System.Drawing.Size(146, 22);
             this.menuItemOpen.Text = "&Open";
-            this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
             // menuItemExit
             // 
@@ -87,78 +97,162 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEditNode});
+            this.btnOpen,
+            this.btnSave,
+            this.btnDelete,
+            this.toolStripSeparator1,
+            this.btnAdd,
+            this.txtAddNode,
+            this.toolStripSeparator2,
+            this.btnFind,
+            this.txtFindNode});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(695, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(695, 37);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnEditNode
+            // btnOpen
             // 
-            this.btnEditNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnEditNode.Image = ((System.Drawing.Image)(resources.GetObject("btnEditNode.Image")));
-            this.btnEditNode.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditNode.Name = "btnEditNode";
-            this.btnEditNode.Size = new System.Drawing.Size(63, 22);
-            this.btnEditNode.Text = "Edit Node";
-            this.btnEditNode.Click += new System.EventHandler(this.btnEditNode_Click);
-            // 
-            // treeView
-            // 
-            this.treeView.Location = new System.Drawing.Point(0, 49);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(372, 405);
-            this.treeView.TabIndex = 3;
-            this.treeView.Visible = false;
-            // 
-            // txtBox
-            // 
-            this.txtBox.Location = new System.Drawing.Point(437, 49);
-            this.txtBox.Multiline = true;
-            this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(258, 405);
-            this.txtBox.TabIndex = 4;
-            this.txtBox.Visible = false;
+            this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
+            this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(70, 34);
+            this.btnOpen.Text = "Open";
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(458, 460);
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save Node";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Size = new System.Drawing.Size(65, 34);
+            this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnCancel
+            // btnDelete
             // 
-            this.btnCancel.Location = new System.Drawing.Point(589, 460);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(106, 34);
+            this.btnDelete.Text = "Delete Node";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(95, 34);
+            this.btnAdd.Text = "Add Node";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtAddNode
+            // 
+            this.txtAddNode.Name = "txtAddNode";
+            this.txtAddNode.Size = new System.Drawing.Size(100, 37);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
+            // 
+            // btnFind
+            // 
+            this.btnFind.Image = ((System.Drawing.Image)(resources.GetObject("btnFind.Image")));
+            this.btnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(96, 34);
+            this.btnFind.Text = "Find Node";
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // txtFindNode
+            // 
+            this.txtFindNode.Name = "txtFindNode";
+            this.txtFindNode.Size = new System.Drawing.Size(100, 37);
+            // 
+            // treeView
+            // 
+            this.treeView.Location = new System.Drawing.Point(0, 94);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(434, 398);
+            this.treeView.TabIndex = 3;
+            this.treeView.UseWaitCursor = true;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.label1,
+            this.toolStripLabel1});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 61);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(695, 25);
+            this.toolStrip2.TabIndex = 4;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = false;
+            this.label1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(400, 22);
+            this.label1.Text = "File Explorer";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabel1.AutoSize = false;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(200, 22);
+            this.toolStripLabel1.Text = "Result";
+            // 
+            // txtBox
+            // 
+            this.txtBox.Location = new System.Drawing.Point(440, 300);
+            this.txtBox.Multiline = true;
+            this.txtBox.Name = "txtBox";
+            this.txtBox.Size = new System.Drawing.Size(255, 192);
+            this.txtBox.TabIndex = 6;
+            // 
+            // listBox
+            // 
+            this.listBox.FormattingEnabled = true;
+            this.listBox.Location = new System.Drawing.Point(440, 94);
+            this.listBox.Name = "listBox";
+            this.listBox.Size = new System.Drawing.Size(255, 199);
+            this.listBox.TabIndex = 7;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // Bai2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(695, 492);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.listBox);
             this.Controls.Add(this.txtBox);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Bai2";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,11 +266,21 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemOpen;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnEditNode;
         private System.Windows.Forms.TreeView treeView;
+        private System.Windows.Forms.ToolStripButton btnOpen;
+        private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnAdd;
+        private System.Windows.Forms.ToolStripTextBox txtAddNode;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnFind;
+        private System.Windows.Forms.ToolStripTextBox txtFindNode;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel label1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.TextBox txtBox;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ListBox listBox;
     }
 }
 

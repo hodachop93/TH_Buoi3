@@ -36,14 +36,14 @@
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.treeView = new System.Windows.Forms.TreeView();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.listView = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +57,10 @@
             this.btnCopy,
             this.btnDelete,
             this.toolStripButton1,
-            this.toolStripTextBox1});
+            this.txtSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(710, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(1046, 36);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -72,6 +72,7 @@
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(76, 34);
             this.btnOpen.Text = "Open";
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnNewFolder
             // 
@@ -80,6 +81,7 @@
             this.btnNewFolder.Name = "btnNewFolder";
             this.btnNewFolder.Size = new System.Drawing.Size(101, 33);
             this.btnNewFolder.Text = "New Folder";
+            this.btnNewFolder.Click += new System.EventHandler(this.btnNewFolder_Click);
             // 
             // btnCopy
             // 
@@ -88,6 +90,7 @@
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(69, 33);
             this.btnCopy.Text = "Copy";
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // btnDelete
             // 
@@ -96,6 +99,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(74, 33);
             this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // toolStripButton1
             // 
@@ -104,18 +108,19 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(76, 33);
             this.toolStripButton1.Text = "Search";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // toolStripTextBox1
+            // txtSearch
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(150, 36);
-            this.toolStripTextBox1.Tag = "";
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(150, 36);
+            this.txtSearch.Tag = "";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 325);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 581);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(710, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1046, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -127,35 +132,9 @@
             this.treeView.Location = new System.Drawing.Point(0, 36);
             this.treeView.Name = "treeView";
             this.treeView.SelectedImageIndex = 0;
-            this.treeView.Size = new System.Drawing.Size(227, 289);
+            this.treeView.Size = new System.Drawing.Size(227, 545);
             this.treeView.TabIndex = 2;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
-            // 
-            // listView
-            // 
-            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.name,
-            this.date,
-            this.type});
-            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView.Location = new System.Drawing.Point(227, 36);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(483, 289);
-            this.listView.TabIndex = 3;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
-            // 
-            // name
-            // 
-            this.name.Text = "Name";
-            // 
-            // date
-            // 
-            this.date.Text = "Date modified";
-            // 
-            // type
-            // 
-            this.type.Text = "Type";
             // 
             // imageList
             // 
@@ -166,11 +145,42 @@
             this.imageList.Images.SetKeyName(2, "CD-Rom Drive.png");
             this.imageList.Images.SetKeyName(3, "folder.png");
             // 
+            // listView
+            // 
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.date,
+            this.type});
+            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView.Location = new System.Drawing.Point(227, 36);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(819, 545);
+            this.listView.TabIndex = 3;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView_AfterLabelEdit);
+            this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
+            // 
+            // name
+            // 
+            this.name.Text = "Name";
+            this.name.Width = 213;
+            // 
+            // date
+            // 
+            this.date.Text = "Date modified";
+            this.date.Width = 192;
+            // 
+            // type
+            // 
+            this.type.Text = "Type";
+            this.type.Width = 204;
+            // 
             // Bai1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 347);
+            this.ClientSize = new System.Drawing.Size(1046, 603);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.statusStrip1);
@@ -194,7 +204,7 @@
         private System.Windows.Forms.ToolStripButton btnCopy;
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox txtSearch;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.ListView listView;

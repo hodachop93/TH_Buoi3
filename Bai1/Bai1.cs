@@ -18,6 +18,7 @@ namespace Bai1
 {
     public partial class Bai1 : Form
     {
+        private string currentPath;
         public Bai1()
         {
             InitializeComponent();
@@ -96,6 +97,7 @@ namespace Bai1
                 this.Text = tnode.Text;
                 showDirectory(tnode, tnode.Nodes);
             }
+            treeView.SelectedNode = null;
         }
 
         private void showDirectory(TreeNode tnode, TreeNodeCollection nodeCollection)
@@ -122,31 +124,280 @@ namespace Bai1
 
         private void showFolderFile(DirectoryInfo rootdir)
         {
-            string[] lvData= new string[3];
+            string[] lvData= new string[4];
             listView.Items.Clear();
             //Duyet qua cac folder
-            foreach (DirectoryInfo dir in rootdir.GetDirectories())
+            try
             {
-                DirectoryInfo folder = new DirectoryInfo(dir.FullName);
-                lvData[0] = folder.Name;
-                lvData[1] = folder.LastWriteTime.ToString();
-                lvData[2] = "Folder";
-                ListViewItem lvItem= new ListViewItem(lvData);
-                listView.Items.Add(lvItem);
+                foreach (DirectoryInfo dir in rootdir.GetDirectories())
+                {
+                    DirectoryInfo folder = new DirectoryInfo(dir.FullName);
+                    lvData[0] = folder.Name;
+                    lvData[1] = folder.LastWriteTime.ToString();
+                    lvData[2] = "Folder";
+                    lvData[3] = folder.FullName;
+                    ListViewItem lvItem = new ListViewItem(lvData);
+                    listView.Items.Add(lvItem);
+                }
+                string[] files = Directory.GetFiles(rootdir.FullName);
+                //Duyet qua cac file
+                foreach (string file in files)
+                {
+                    FileInfo objFile = new FileInfo(file);
+                    lvData[0] = objFile.Name;
+                    lvData[1] = objFile.LastAccessTime.ToString();
+                    lvData[2] = "File";
+                    lvData[3] = objFile.FullName;
+                    ListViewItem lvItem = new ListViewItem(lvData);
+                    listView.Items.Add(lvItem);
+                }
             }
-            //Duyet qua cac file
-            string[] files = Directory.GetFiles(rootdir.FullName);
-            foreach (string file in files)
+            catch (Exception)
             {
-                FileInfo objFile = new FileInfo(file);
-                lvData[0] = objFile.Name;
-                lvData[1] = objFile.LastAccessTime.ToString();
-                lvData[2] = "File";
-                ListViewItem lvItem = new ListViewItem(lvData);
-                listView.Items.Add(lvItem);
+                MessageBox.Show("Truy cập này không được phép", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+           
+            
+        }
+
+        private void listView_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem lvItem = listView.FocusedItem;
+            string path = lvItem.SubItems[3].Text;
+            try
+            {
+                FileInfo file = new FileInfo(path);
+                if (file.Exists)
+                {
+                    //Neu item ta chon la file
+                    Process.Start(path);
+                }
+                else
+                {
+                    //Neu item ta chon la folder
+                    DirectoryInfo dir = new DirectoryInfo(path + "\\");
+                    if (dir.Exists)
+                    {
+                        showFolderFile(dir);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Folder này không tồn tại", "Error", MessageBoxButtons.OK);    
+                    }
+                }
+            }
+            catch (Win32Exception)
+            {
+                MessageBox.Show("Không có chương trình nào để mở loại file này", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            ListViewItem lvItem = listView.FocusedItem;
+            string filename = lvItem.SubItems[0].Text;
+            string path = lvItem.SubItems[3].Text;
+            MessageBox.Show("File name: " + filename + "\nPath: " + path, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void btnNewFolder_Click(object sender, EventArgs e)
+        {
+            //Lay duong dan cua cua thu muc hien hanh
+            ListViewItem lvItem = listView.Items[0];
+            string name = lvItem.SubItems[0].Text;
+            string path = lvItem.SubItems[3].Text;
+            currentPath= path.Replace(name, "");
+            lvItem = new ListViewItem();
+            lvItem.Text = "New Folder";
+            listView.LabelEdit = true;
+            listView.Items.Add(lvItem);
+            lvItem.BeginEdit();
+        }
+
+        private void listView_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            string pathNewFolder = currentPath + "\\" + e.Label;
+            DirectoryInfo rootDir = new DirectoryInfo(currentPath);
+            if (e.Label == null)
+            {
+                pathNewFolder = currentPath + "\\New Folder";
+            }
+            if (Directory.Exists(pathNewFolder))
+            {
+                MessageBox.Show("Folder này đã tồn tại", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                ListViewItem lvItem = listView.FocusedItem;
+                listView.Items.Remove(lvItem);
+            }
+            else
+            {
+                Directory.CreateDirectory(pathNewFolder);
+                showFolderFile(rootDir);
+            }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Vui long chon File hoac Folder de copy!");
+            }
+            else
+            {
+                FolderBrowserDialog browser = new FolderBrowserDialog();
+                browser.ShowDialog();
+
+                for (int i = 0; i < listView.SelectedItems.Count; i++)
+                {
+                    //Lay duong dan cua file da chon
+                    string pathCopy = listView.SelectedItems[i].SubItems[3].Text;
+                    //Neu la file
+                    if (File.Exists(pathCopy))
+                    {
+                        FileInfo file = new FileInfo(pathCopy);
+                        file.CopyTo(browser.SelectedPath+"\\"+file.Name, true);
+                    }
+                    else if (Directory.Exists(pathCopy))
+                    {
+                        DirectoryCopy(pathCopy, browser.SelectedPath + "\\" + listView.SelectedItems[i].SubItems[0].Text, true);
+                    }
+                    
+                }
+              
+
+            }
+        }
+
+        //Ham copy folder
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // If the source directory does not exist, throw an exception.
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            // If the destination directory does not exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+
+            // Get the file contents of the directory to copy.
+            FileInfo[] files = dir.GetFiles();
+
+            foreach (FileInfo file in files)
+            {
+                // Create the path to the new copy of the file.
+                string temppath = Path.Combine(destDirName, file.Name);
+
+                // Copy the file.
+                file.CopyTo(temppath, false);
+            }
+
+            // If copySubDirs is true, copy the subdirectories.
+            if (copySubDirs)
+            {
+
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    // Create the subdirectory.
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+
+                    // Copy the subdirectories.
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            ListViewItem lvItem = listView.FocusedItem;
+            //Lay duong dan thu muc hien hanh
+            string name = lvItem.SubItems[0].Text;
+            string path = lvItem.SubItems[3].Text;
+            currentPath = path.Replace(name, "");
+            listView.Items.Remove(lvItem);
+            string pathDelete = lvItem.SubItems[3].Text;
+
+            if (File.Exists(pathDelete))
+            {
+                //Neu la file
+                FileInfo file = new FileInfo(pathDelete);
+                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa file này không?", "Xac nhan xoa file", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    file.Delete();
+                }
+                else 
+                    return;
+
+            }
+            else if (Directory.Exists(path))
+            {
+                //Neu la folder
+                DirectoryInfo dir = new DirectoryInfo(path);
+                DialogResult dialog = MessageBox.Show("Bạn có muốn xóa file này không?", "Xac nhan xoa file", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    dir.Delete(true);
+                }
+                else
+                    return;
+            }
+            DirectoryInfo rootDir = new DirectoryInfo(currentPath);
+            showFolderFile(rootDir);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            //Lay duong dan thu muc hien hanh
+            ListViewItem lvItem = listView.Items[0];
+            string name = lvItem.SubItems[0].Text;
+            string path = lvItem.SubItems[3].Text;
+            currentPath = path.Replace(name, "");
+            listView.Items.Clear();
+            string[] lvData = new string[4];
+            DirectoryInfo rootdir = new DirectoryInfo(currentPath);
+            foreach (DirectoryInfo dir in rootdir.GetDirectories())
+            {
+                DirectoryInfo folder = new DirectoryInfo(dir.FullName);
+                if (folder.Name.Contains(txtSearch.Text))
+                {
+                    lvData[0] = folder.Name;
+                    lvData[1] = folder.LastWriteTime.ToString();
+                    lvData[2] = "Folder";
+                    lvData[3] = folder.FullName;
+                    ListViewItem lvItem1 = new ListViewItem(lvData);
+                    listView.Items.Add(lvItem1);
+                }
+               
+            }
+            string[] files = Directory.GetFiles(rootdir.FullName);
+            //Duyet qua cac file
+            foreach (string file in files)
+            {
+                FileInfo objFile = new FileInfo(file);
+                if (objFile.Name.Contains(txtSearch.Text))
+                {
+                    lvData[0] = objFile.Name;
+                    lvData[1] = objFile.LastAccessTime.ToString();
+                    lvData[2] = "File";
+                    lvData[3] = objFile.FullName;
+                    ListViewItem lvItem1 = new ListViewItem(lvData);
+                    listView.Items.Add(lvItem1);
+                }
+                
+            }
+        }
+
+        
        
         
     }
