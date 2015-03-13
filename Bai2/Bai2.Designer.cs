@@ -50,6 +50,8 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtBox = new System.Windows.Forms.TextBox();
             this.listBox = new System.Windows.Forms.ListBox();
+            this.btnEdit = new System.Windows.Forms.ToolStripButton();
+            this.txtEdit = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -62,7 +64,7 @@
             this.menuEdit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(695, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(890, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -107,10 +109,12 @@
             this.txtAddNode,
             this.toolStripSeparator2,
             this.btnFind,
-            this.txtFindNode});
+            this.txtFindNode,
+            this.btnEdit,
+            this.txtEdit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(695, 37);
+            this.toolStrip1.Size = new System.Drawing.Size(890, 37);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -181,11 +185,11 @@
             // 
             // treeView
             // 
+            this.treeView.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView.Location = new System.Drawing.Point(0, 94);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(434, 398);
+            this.treeView.Size = new System.Drawing.Size(495, 479);
             this.treeView.TabIndex = 3;
-            this.treeView.UseWaitCursor = true;
             // 
             // toolStrip2
             // 
@@ -194,7 +198,7 @@
             this.toolStripLabel1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 61);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(695, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(890, 25);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -216,27 +220,41 @@
             // 
             // txtBox
             // 
-            this.txtBox.Location = new System.Drawing.Point(440, 300);
+            this.txtBox.Location = new System.Drawing.Point(501, 339);
             this.txtBox.Multiline = true;
             this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(255, 192);
+            this.txtBox.Size = new System.Drawing.Size(389, 234);
             this.txtBox.TabIndex = 6;
             // 
             // listBox
             // 
             this.listBox.FormattingEnabled = true;
-            this.listBox.Location = new System.Drawing.Point(440, 94);
+            this.listBox.Location = new System.Drawing.Point(501, 94);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(255, 199);
+            this.listBox.Size = new System.Drawing.Size(389, 238);
             this.listBox.TabIndex = 7;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(93, 34);
+            this.btnEdit.Text = "Edit Node";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // txtEdit
+            // 
+            this.txtEdit.Name = "txtEdit";
+            this.txtEdit.Size = new System.Drawing.Size(100, 37);
             // 
             // Bai2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(695, 492);
+            this.ClientSize = new System.Drawing.Size(890, 572);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.txtBox);
             this.Controls.Add(this.toolStrip2);
@@ -281,6 +299,8 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.TextBox txtBox;
         private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ToolStripButton btnEdit;
+        private System.Windows.Forms.ToolStripTextBox txtEdit;
     }
 }
 

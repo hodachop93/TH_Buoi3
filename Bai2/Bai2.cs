@@ -145,6 +145,11 @@ namespace Bai2
             txtBox.Text = nodeList[listBox.SelectedIndex].InnerText;
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            treeView.SelectedNode.Text = txtEdit.Text;
+        }
+
       
 
        
