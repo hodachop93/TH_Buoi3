@@ -95,12 +95,12 @@ namespace Bai1
             else
             {
                 this.Text = tnode.Text;
-                showDirectory(tnode, tnode.Nodes);
+                showDirectory(tnode);
             }
             treeView.SelectedNode = null;
         }
 
-        private void showDirectory(TreeNode tnode, TreeNodeCollection nodeCollection)
+        private void showDirectory(TreeNode tnode)
         {
             if (Directory.Exists(getFullPath(tnode.FullPath))==false)
             {
@@ -108,13 +108,29 @@ namespace Bai1
             }
             else
             {
-               //O dia duoc chon
-                string diskPath = tnode.Text;
-                DriveInfo di = new DriveInfo(diskPath);
-                DirectoryInfo rootdir = di.RootDirectory;
+               //O dia hoac folder duoc chon
+               
+                string path = tnode.FullPath;
+                path = getFullPath(path);
+                DirectoryInfo rootdir = new DirectoryInfo(path);
+                try
+                {
+                    foreach (DirectoryInfo direc in rootdir.GetDirectories())
+                    {
+                        tnode.Nodes.Add(new TreeNode(direc.Name, 3, 3));
+                    }
+                    tnode.Expand();
+                }
+                catch
+                {
+                    MessageBox.Show("Bạn không có quyền truy cập vào tệp này!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
                 showFolderFile(rootdir);
             }
         }
+
+     
 
         //Lay duong dan cua mot folder
         private string getFullPath(string path)

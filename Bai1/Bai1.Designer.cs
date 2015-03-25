@@ -132,7 +132,7 @@
             this.treeView.Location = new System.Drawing.Point(0, 36);
             this.treeView.Name = "treeView";
             this.treeView.SelectedImageIndex = 0;
-            this.treeView.Size = new System.Drawing.Size(227, 545);
+            this.treeView.Size = new System.Drawing.Size(263, 545);
             this.treeView.TabIndex = 2;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
@@ -152,9 +152,9 @@
             this.date,
             this.type});
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView.Location = new System.Drawing.Point(227, 36);
+            this.listView.Location = new System.Drawing.Point(263, 36);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(819, 545);
+            this.listView.Size = new System.Drawing.Size(783, 545);
             this.listView.TabIndex = 3;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
